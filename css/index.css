@@ -1,0 +1,34 @@
+body{
+	font-family: Microsoft JhengHei;
+	background-color: #D9EDF7;
+}
+
+.title{
+	margin-top:100px;
+	font-weight:bold;
+	font-size: 45px;
+}
+
+.loginDiv{
+	margin-top:50px;
+	padding-top:30px;
+	padding-bottom:90px; 
+	border-radius:10px;
+	background-color: white;
+	box-shadow:1px 1px 3px 3px #cccccc;
+	width: 40%;
+}
+
+.loginFont{
+	font-family: Verdana;
+	margin-bottom:30px;
+	font-size: 35px;
+}
+
+.inputField{
+	font-size:20px;
+}
+
+.icon{
+	left:0;
+}

@@ -19,7 +19,7 @@
 <body>
 	<div class="container">
 		<center>
-			<div class="title">人事薪資管理系統</div>
+			<div class="indexTitle">人事薪資管理系統</div>
 				<div class="loginDiv">
 					<p class="loginFont">Login</p>
 					<form role="form" class="form-horizontal" method="post" active="">

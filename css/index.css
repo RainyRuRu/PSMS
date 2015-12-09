@@ -1,9 +1,11 @@
+/*----commem----*/
 body{
 	font-family: Microsoft JhengHei;
 	background-color: #D9EDF7;
 }
 
-.title{
+/*----login----*/
+.indexTitle{
 	margin-top:100px;
 	font-weight:bold;
 	font-size: 45px;
@@ -29,6 +31,72 @@ body{
 	font-size:20px;
 }
 
-.icon{
-	left:0;
+
+/*----employee----*/
+
+.background{
+	margin-top:20px;
+	margin-bottom:20px;
+	padding-top:30px;
+	padding-bottom:50px; 
+	border-radius:10px;
+	background-color: white;
+	box-shadow:1px 1px 3px 3px #cccccc;
+}
+
+.titleRow{
+	margin-top: 15px; 
+}
+
+.title{
+	font-size:35px;
+	font-weight:bold;
+}
+
+.subItem{
+	padding-top: 15px;
+	font-size:20px;
+}
+
+.subItem.signout{
+
+}
+
+.subItem.signout:hover{
+	color:#65A0D2;
+	cursor: pointer;
+}
+
+.searchRow{
+	margin-top: 20px;
+}
+
+table {
+	margin-top: 10px;
+	border-collapse: collapse;
+    width: 80%;
+}
+
+td {
+	font-family: Verdana, Microsoft JhengHei;
+	width: 25%;
+	border: 3px solid white;
+    height: 130px;
+    vertical-align: top;
+    background-color:#ECECEC;
+    border-radius:10px;
+}
+
+td:hover{
+	background-color:#D9EDF7;
+};
+
+.tabItem{
+	font-size:20px;
+	width:200px;
+}
+
+.tabRow{
+	width:90%;
+	margin-top:40px;
 }

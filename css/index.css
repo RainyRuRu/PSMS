@@ -69,15 +69,16 @@ body{
 
 .searchRow{
 	margin-top: 20px;
+	font-size: 18px;
 }
 
-table {
+.monthTable {
 	margin-top: 10px;
 	border-collapse: collapse;
     width: 80%;
 }
 
-td {
+.monthTd {
 	font-family: Verdana, Microsoft JhengHei;
 	width: 25%;
 	border: 3px solid white;
@@ -87,7 +88,7 @@ td {
     border-radius:10px;
 }
 
-td:hover{
+.monthTd:hover{
 	background-color:#D9EDF7;
 };
 
@@ -99,4 +100,24 @@ td:hover{
 .tabRow{
 	width:90%;
 	margin-top:40px;
+}
+
+.uplodeground{
+	border: 1px solid gray;
+	width: 80%;
+	height: 400px;
+	overflow: auto;
+}
+
+.uploadBtn{
+	margin-top: 10px;
+}
+
+.uploadImg{
+	margin-top: 150px;
+	color: gray;
+}
+
+.uploadTd{
+	height: 60px;
 }

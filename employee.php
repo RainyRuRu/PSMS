@@ -31,9 +31,9 @@
 				</div>
 				<button type="button" class="btn btn-default col-md-1">GO</button>
 			</div>
-			<table>
+			<table class="monthTable">
 				<tr>
-					<td>
+					<td class="monthTd">
 						<div class="row titleRow">
 							<div class="col-md-offset-1 col-md-3" style="font-size:20px">1月</div>
 						</div>
@@ -41,56 +41,56 @@
 							<button type="button" class="btn btn-info col-md-offset-4">Download</button>
 						</div>
 					</td>
-					<td>
+					<td class="monthTd">
 						<div class="row titleRow">
 							<div class="col-md-offset-1 col-md-3" style="font-size:20px">2月</div>
 						</div>
 						<div class="row titleRow">
 							<button type="button" class="btn btn-info col-md-offset-4">Download <span class="badge">2</span></button>
 						</div>
-					</td><td>
+					</td ><td class="monthTd">
 						<div class="row titleRow">
 							<div class="col-md-offset-1 col-md-3" style="font-size:20px">3月</div>
 						</div>
-					</td><td>
+					</td><td class="monthTd">
 						<div class="row titleRow">
 							<div class="col-md-offset-1 col-md-3" style="font-size:20px">4月</div>
 						</div>
 					</td>
 				</tr>
 				<tr>
-					<td>
+					<td class="monthTd">
 						<div class="row titleRow">
 							<div class="col-md-offset-1 col-md-3" style="font-size:20px">5月</div>
 						</div>
-					</td><td>
+					</td><td class="monthTd">
 						<div class="row titleRow">
 							<div class="col-md-offset-1 col-md-3" style="font-size:20px">6月</div>
 						</div>
-					</td><td>
+					</td><td class="monthTd">
 						<div class="row titleRow">
 							<div class="col-md-offset-1 col-md-3" style="font-size:20px">7月</div>
 						</div>
-					</td><td>
+					</td><td class="monthTd">
 						<div class="row titleRow">
 							<div class="col-md-offset-1 col-md-3" style="font-size:20px">8月</div>
 						</div>
 					</td>
 				</tr>
 				<tr>
-					<td>
+					<td class="monthTd">
 						<div class="row titleRow">
 							<div class="col-md-offset-1 col-md-3" style="font-size:20px">9月</div>
 						</div>
-					</td><td>
+					</td><td class="monthTd">
 						<div class="row titleRow">
 							<div class="col-md-offset-1 col-md-4" style="font-size:20px">10月</div>
 						</div>
-					</td><td>
+					</td><td class="monthTd">
 						<div class="row titleRow">
 							<div class="col-md-offset-1 col-md-4" style="font-size:20px">11月</div>
 						</div>
-					</td><td>
+					</td><td class="monthTd">
 						<div class="row titleRow">
 							<div class="col-md-offset-1 col-md-4" style="font-size:20px">12月</div>
 						</div>

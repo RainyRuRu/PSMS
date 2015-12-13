@@ -14,9 +14,11 @@
 
 	<!-- 最新編譯和最佳化的 JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+
+	<script src="js/manager.js"></script>
 	<link rel="stylesheet" href="css/index.css">
 <head>
-<body>
+<body onload="load()">
 	<div class="container">
 		<div class="background">
 			<!-- header -->
@@ -27,13 +29,13 @@
 		</div>
 		<center>
 			<!-- tab -->
-		<ul class="nav nav-tabs tabRow" id="page">
-			<li id="sellTag" class="active" style="font-size:20px;width:200px;"><a>上傳薪資單</a></li>
-			<li id="buyingTag" style="font-size:20px;width:200px;"><a>管理薪資單</a></li>
+		<ul class="nav nav-tabs" id="page" style="width:90%;margin-top:40px;">
+			<li id="uploadTab" class="tabItem active" onclick="changeTab('upload')"><a>上傳薪資單</a></li>
+			<li id="manageTab" class="tabItem" onclick="changeTab('manage')"><a>管理薪資單</a></li>
 		</ul>
 
-			<!-- managerTab -->
-		<div id="managerTab" style="display:none">
+		<!-- managerTab -->
+		<div id="manageDiv" style="display:none">
 			<div class="row searchRow">
 				<div class="col-md-offset-3 col-md-1" style="padding-top:7px">員工：</div>
 				<div class="col-md-4">
@@ -123,21 +125,17 @@
 			<!-- end managerTab -->
 		
 			<!-- uploadTab -->
-		<div id="uploadTab" style="">
+		<div id="uploadDiv" style="">
 			<div class="form-horizontal searchRow">
   				<div class="row form-group">
     				<label class="col-md-offset-1 col-md-2 control-label">薪資單月份：</label>
     				<div class="col-md-2">
-      					<select class="form-control">
-  							<option>2011</option>
-  							<option>2012</option>
-  							<option>2013</option>
-  							<option>2014</option>
-  							<option>2015</option>
+      					<select id="yearSelect" name="year" class="form-control">
+  							
 						</select>
 					</div>
 					<div class="col-md-2">
-      					<select class="form-control">
+      					<select id="monthSelect" class="form-control">
   							<option>1月</option>
   							<option>2月</option>
   							<option>3月</option>
@@ -158,12 +156,17 @@
 				</div>
 			</div>
 
-			<div class="uplodeground">
-				<div class="uploadImg" style="display:none">
-					<i class="fa fa-files-o fa-5x"></i>
-					<p>拖曳檔案至此</p>
+			<div id="uploadgournd" class="uplodeground" dragover="over(event)">
+				<div class="uploadImg">
+					<div id="fileHere">
+						<i class="fa fa-files-o fa-5x"></i>
+						<p>拖曳檔案至此</p>
+					</div>
+					<div id="dragImg" style="display:none;">
+						<img src="loading.gif" width="200px"/>
+					</div>
 				</div>
-				<table class="table table-hover">
+				<table class="table table-hover" style="display:none">
 					<tr>
 						<td class="col-md-1">
 							<img src="icon_excel.png" width="50px"/>

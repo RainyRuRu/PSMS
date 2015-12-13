@@ -92,19 +92,18 @@ body{
 	background-color:#D9EDF7;
 };
 
-.tabItem{
-	font-size:20px;
-	width:200px;
-}
+/*----manager----*/
+
 
 .tabRow{
 	width:90%;
 	margin-top:40px;
 }
 
-
-
-
+.tabItem{
+	font-size:20px;
+	width:200px;
+}
 
 .uplodeground{
 	border: 1px solid gray;

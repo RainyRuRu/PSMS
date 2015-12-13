@@ -102,6 +102,10 @@ body{
 	margin-top:40px;
 }
 
+
+
+
+
 .uplodeground{
 	border: 1px solid gray;
 	width: 80%;
@@ -120,4 +124,16 @@ body{
 
 .uploadTd{
 	height: 60px;
+}
+
+.searchErr{
+	margin-top:30px;
+	font-size: 30px;
+	color:gray;
+}
+
+.searchTable{
+	margin-top:20px;
+	height: 250px;
+	overflow: auto;
 }

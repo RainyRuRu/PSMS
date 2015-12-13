@@ -173,7 +173,7 @@
 							<input type="text" class="form-control" value="E224763903 蔡詩吟" disabled>
 						</td>
 						<td class="col-md-1" style="padding-top:20px">
-							<button type="button" class="btn btn-default">
+							<button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">
 								選擇員工
 							</button>
 						</td>
@@ -208,6 +208,68 @@
 			<!-- end uploadTab -->
 			
 		</center>
+
+	<!-- Modal -->
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">
+						<span aria-hidden="true">&times;</span>
+						<span class="sr-only">Close</span>
+					</button>
+					<h4 class="modal-title" id="myModalLabel">選擇員工</h4>
+				</div>
+				<div class="modal-body">
+					<div class="row">
+						<div class="col-sm-4">
+							<input type="text" class="form-control" name="id" placeholder="ID">
+						</div>
+						<div class="col-sm-4">
+							<input type="text" class="form-control" name="name" placeholder="姓名">
+						</div>
+						<div class="col-sm-offset-1 col-sm-2">
+							<button type="button" class="btn btn-default">
+								<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+								搜尋
+							</button>
+						</div>
+					</div>
+					<center>
+					<div id="searchError" class="searchErr;" style="display:none;">
+						<i class="fa fa-frown-o"></i>
+						<span>查無資料</span>
+					</div>
+					</center>
+					
+					<div class="searchTable">
+					<table class="table table-hover">
+						<thead>
+							<tr>
+								<th class="col-sm-1">#</th>
+								<th>ID</th>
+								<th>姓名</th>
+							</tr>
+						</thead>
+						<tr>
+							<td>
+								<input type="radio" name="select" value="1">
+							</td>
+							<td>1234567890</td>
+							<td>test1</td>
+						</tr>
+					</table>
+				</div>
+
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+					<button type="button" class="btn btn-primary">選擇</button>
+				</div>
+
+			</div>
+		</div>
+	</div>
 	</div>
 	</div>
 </body>

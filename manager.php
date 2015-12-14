@@ -150,13 +150,16 @@
   							<option>12月</option>
 						</select>
 					</div>
-					<button type="button" class="btn btn-default">
-						<span class="fa fa-file-text-o" aria-hidden="true"></span> 新增檔案
-					</button>
+					<div class="col-md-offset-2 col-md-2">
+						<span class="file-input btn btn-default btn-file">
+							<span class="fa fa-file-text-o" aria-hidden="true"></span> 新增檔案
+					 		<input type="file" name="excelFiles" onchange="chooseFile()" multiple>
+					 	</span>
+					</div>
 				</div>
 			</div>
 
-			<div id="uploadgournd" class="uplodeground" dragover="over(event)">
+			<div id="uploadgournd" class="uplodeground">
 				<div class="uploadImg">
 					<div id="fileHere">
 						<i class="fa fa-files-o fa-5x"></i>
@@ -166,41 +169,7 @@
 						<img src="loading.gif" width="200px"/>
 					</div>
 				</div>
-				<table class="table table-hover" style="display:none">
-					<tr>
-						<td class="col-md-1">
-							<img src="icon_excel.png" width="50px"/>
-						</td>
-						<td class="col-md-6" style="padding-top:20px">2015_12_蔡詩吟.exl</td>
-						<td class="col-md-3" style="padding-top:20px">
-							<input type="text" class="form-control" value="E224763903 蔡詩吟" disabled>
-						</td>
-						<td class="col-md-1" style="padding-top:20px">
-							<button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">
-								選擇員工
-							</button>
-						</td>
-						<td class="col-md-1" style="padding-top:20px;font-size:20px">
-							<span class="fa fa-trash-o" aria-hidden="true"></span>
-						</td>
-					</tr>
-					<tr>
-						<td class="col-md-1">
-							<img src="icon_excel.png" width="50px"/>
-						</td>
-						<td class="col-md-6" style="padding-top:20px">2015_12_蔡詩吟.exl</td>
-						<td class="col-md-3" style="padding-top:20px">
-							<input type="text" class="form-control" value="請選擇員工" disabled>
-						</td>
-						<td class="col-md-1" style="padding-top:20px">
-							<button type="button" class="btn btn-default">
-								選擇員工
-							</button>
-						</td>
-						<td class="col-md-1" style="padding-top:20px;font-size:20px">
-							<span class="fa fa-trash-o" aria-hidden="true"></span>
-						</td>
-					</tr>
+				<table id="fileTable" class="table table-hover" style="display:none">
 				</table>
 
 			</div>
@@ -226,14 +195,14 @@
 				<div class="modal-body">
 					<div class="row">
 						<div class="col-sm-4">
-							<input type="text" class="form-control" name="id" placeholder="ID">
+							<input type="text" class="form-control" name="search_id" placeholder="ID">
 						</div>
 						<div class="col-sm-4">
-							<input type="text" class="form-control" name="name" placeholder="姓名">
+							<input type="text" class="form-control" name="search_name" placeholder="姓名">
 						</div>
 						<div class="col-sm-offset-1 col-sm-2">
-							<button type="button" class="btn btn-default">
-								<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+							<button type="button" class="btn btn-default" onclick="searchUser()">
+								<span class="glyphicon glyphicon-search" aria-hidden="true" ></span>
 								搜尋
 							</button>
 						</div>
@@ -254,20 +223,15 @@
 								<th>姓名</th>
 							</tr>
 						</thead>
-						<tr>
-							<td>
-								<input type="radio" name="select" value="1">
-							</td>
-							<td>1234567890</td>
-							<td>test1</td>
-						</tr>
+						<tbody id="searchTableBody">
+						</tbody>
 					</table>
 				</div>
 
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-					<button type="button" class="btn btn-primary">選擇</button>
+					<button id="searchBtn" type="button" class="btn btn-primary" onclick="chooseEmployee()">選擇</button>
 				</div>
 
 			</div>

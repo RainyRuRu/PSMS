@@ -10,7 +10,7 @@ $data = false;
 
 try {
 
-	$dsn = 'mysql:dbname=PSMS;host=192.168.2.104';
+	$dsn = 'mysql:dbname=psms;host=127.0.0.1';
 	$user = 'root';
 	$password = '04241104';
 	

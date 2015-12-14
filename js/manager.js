@@ -71,19 +71,9 @@ function chooseFile(){
 	var files = $('input[type=file]')[0].files;
 	var count = files.length;
 
-	console.log($('input[type=file]')[0].files);
-	var newList = [];
-
 	for (var i = 0 ; i < count ; i++) {
-		newList.push(files[i]);
 		addFileField(files[i].name);
 	}
-
-	newList.splice(0,1);
-	$('input[type=file]')[0].files= newList;
-
-	console.log($('input[type=file]')[0].files);
-
 }
 
 function addFileField(fileName){
@@ -109,8 +99,8 @@ function fileFieldMaker(fileName, number){
 					'選擇員工'+
 				'</button>'+
 			'</td>'+
-			'<td class="col-md-1" style="padding-top:20px;font-size:20px">'+
-				'<span class="fa fa-trash-o" aria-hidden="true"></span>'+
+			'<td class="col-md-1" style="padding-top:20px;font-size:20px" onclick="removeFile(event)">'+
+				'<span class="fa fa-trash-o" aria-hidden="true" ></span>'+
 			'</td>'+
 		'</tr>');
 }
@@ -148,7 +138,7 @@ function searchResultField(id, name){
 	$("#searchTableBody").append(
 		'<tr>'+
 		'<td>'+
-		'<input type="radio" name="select" value="'+id+'">'+
+		'<input type="radio" name="select" value="'+id+" "+name+'">'+
 		'</td>'+
 		'<td>'+id+'</td>'+
 		'<td>'+name+'</td>'+
@@ -162,7 +152,47 @@ function resetResultTable(){
 function chooseEmployee(number){
 	var id = $("input[name='select']:checked").val();
 	$("#employee"+number).attr('value',id);	
+	$('#myModal').modal('hide');
+}
+
+function stopEvent(evt) {
+	evt.stopPropagation();
+	evt.preventDefault();
+}
+
+function over(e){
+	stopEvent(e);
+	$("#fileHere").hide();
+	$("#dragImg").show();
+}
+
+function drop(e){
+	stopEvent(e);
+
+	var files = e.dataTransfer.files;
+
+	$(".uploadImg").hide();
+	$("#fileTable").show();
+
+	for (var i = 0 ; i < files.length ; i++) {
+		addFileField(files[i].name);
+	}
 
 }
 
+function uploadFiles() {
+	$("#fileTable").empty();
+	$(".uploadImg").show();
+	$("#fileHere").show();
+	$("#dragImg").hide();
 
+	alert("上傳成功");
+}
+
+function removeFile(e) {
+
+	var btn = $(e.target);
+	var tr = btn.parent('tr');
+	tr.remove();
+
+}

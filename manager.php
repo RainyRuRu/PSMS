@@ -159,7 +159,7 @@
 				</div>
 			</div>
 
-			<div id="uploadgournd" class="uplodeground">
+			<div id="uploadgournd" class="uplodeground" ondragover="over(event)" ondrop="drop(event)">
 				<div class="uploadImg">
 					<div id="fileHere">
 						<i class="fa fa-files-o fa-5x"></i>
@@ -174,7 +174,7 @@
 
 			</div>
 
-			<button type="button" class="btn btn-default uploadBtn">上傳</button>
+			<button type="button" class="btn btn-default uploadBtn" onclick="uploadFiles()">上傳</button>
 
 		</div>
 			<!-- end uploadTab -->

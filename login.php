@@ -1,5 +1,14 @@
 <?php
 session_start();
+
+if(isset($_SESSION["user_isAdmin"])) {
+	if($_SESSION["user_isAdmin"]) {
+		header("Location: http://127.0.0.1/PSMS/manager.php");
+	}
+	else {
+		header("Location: http://127.0.0.1/PSMS/employee.php");
+	}
+}
 ?>
 
 <!DOCTYPE html>
@@ -28,7 +37,7 @@ session_start();
 					<p class="loginFont">Login</p>
 					<?php 
 						if(isset($_SESSION["login_error"])){
-							echo '<div class="alert alert-danger col-sm-offset-2 col-sm-8" role="alert">帳號密碼錯誤</div>';
+							echo '<div class="alert alert-danger col-sm-offset-2 col-sm-8" role="alert">'.$_SESSION["login_error"].'</div>';
 						}
 					?>
 					<form role="form" class="form-horizontal" method="post" action="api/doLogin.php">

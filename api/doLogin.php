@@ -7,7 +7,7 @@ $input_pw = $_POST[password];
 $user_info = checkAccount($input_id, $input_pw);
 
 if(empty($user_info)) {
-	$_SESSION["login_error"] = TRUE;
+	$_SESSION["login_error"] = "帳號密碼錯誤";
 	header("Location: http://127.0.0.1/PSMS/login.php");
 }
 else {
@@ -36,6 +36,7 @@ function checkAccount($id, $pw) {
 
 	$db_connect = "mysql:host=".$db_host.";dbname=".$db_select;
 	$db_go = new PDO($db_connect, $db_user, $db_pass);
+	$db_go -> exec("SET NAMES UTF8");
 
 	$sql = $db_go -> prepare("SELECT name, isAdmin
 	    					  FROM user

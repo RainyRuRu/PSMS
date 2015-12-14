@@ -1,3 +1,17 @@
+<?php
+session_start();
+
+if(isset($_SESSION["user_isAdmin"])) {
+	if($_SESSION["user_isAdmin"]) {
+		header("Location: http://127.0.0.1/PSMS/manager.php");
+	}
+}
+else {
+	$_SESSION["login_error"] = "請登入後操作";
+	header("Location: http://127.0.0.1/PSMS/login.php");
+}
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,83 +28,86 @@
 
 	<!-- 最新編譯和最佳化的 JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+	<script src="js/employee.js"></script>
 	<link rel="stylesheet" href="css/index.css">
 <head>
-<body>
+<?php echo '<body onload=onLoad("'.$_SESSION[user_id].'")'; ?>
 	<div class="container">
 		<div class="background">
 		<div class="row titleRow">
 			<div class="col-md-offset-1 col-md-4 title">人事薪資管理系統</div>
-			<div class="col-md-offset-3 col-md-2 subItem">Hi, 詩吟兒</div>
-			<div class="col-md-1 subItem signout"><span class="fa fa-sign-out" aria-hidden="true"></span>登出</div>	
+			<?php echo '<div class="col-md-offset-3 col-md-2 subItem">Hi, '.$_SESSION[user_name].'</div>'; ?>
+			<div class="col-md-1 subItem signout" onclick=logout()><span class="fa fa-sign-out" aria-hidden="true"></span>登出</div>	
 		</div>
 		<center>
 			<div class="row searchRow">
 				<div class="col-md-offset-5 col-md-2">
-				<input type="number" name="quantity" min="2000" max="2015" class="form-control" value="2015">
+				<input id="yearSelector" type="number" name="quantity" min="1996" class="form-control">
 				</div>
-				<button type="button" class="btn btn-default col-md-1">GO</button>
+				<?php echo '<button type="button" class="btn btn-default col-md-1" onclick=goYear("'.$_SESSION[user_id].'",getYear())>GO</button>'; ?>
 			</div>
 			<table class="monthTable">
 				<tr>
-					<td class="monthTd">
+					<td id="month1" class="monthTd">
 						<div class="row titleRow">
 							<div class="col-md-offset-1 col-md-3" style="font-size:20px">1月</div>
 						</div>
-						<div class="row titleRow">
-							<button type="button" class="btn btn-info col-md-offset-4">Download</button>
-						</div>
 					</td>
-					<td class="monthTd">
+					<td id="month2" class="monthTd">
 						<div class="row titleRow">
 							<div class="col-md-offset-1 col-md-3" style="font-size:20px">2月</div>
 						</div>
-						<div class="row titleRow">
-							<button type="button" class="btn btn-info col-md-offset-4">Download <span class="badge">2</span></button>
-						</div>
-					</td ><td class="monthTd">
+					</td >
+					<td id="month3" class="monthTd">
 						<div class="row titleRow">
 							<div class="col-md-offset-1 col-md-3" style="font-size:20px">3月</div>
 						</div>
-					</td><td class="monthTd">
+					</td>
+					<td id="month4" class="monthTd">
 						<div class="row titleRow">
 							<div class="col-md-offset-1 col-md-3" style="font-size:20px">4月</div>
 						</div>
 					</td>
 				</tr>
 				<tr>
-					<td class="monthTd">
+					<td id="month5" class="monthTd">
 						<div class="row titleRow">
 							<div class="col-md-offset-1 col-md-3" style="font-size:20px">5月</div>
 						</div>
-					</td><td class="monthTd">
+					</td>
+					<td id="month6" class="monthTd">
 						<div class="row titleRow">
 							<div class="col-md-offset-1 col-md-3" style="font-size:20px">6月</div>
 						</div>
-					</td><td class="monthTd">
+					</td>
+					<td id="month7" class="monthTd">
 						<div class="row titleRow">
 							<div class="col-md-offset-1 col-md-3" style="font-size:20px">7月</div>
 						</div>
-					</td><td class="monthTd">
+					</td>
+					<td id="month8" class="monthTd">
 						<div class="row titleRow">
 							<div class="col-md-offset-1 col-md-3" style="font-size:20px">8月</div>
 						</div>
 					</td>
 				</tr>
 				<tr>
-					<td class="monthTd">
+					<td id="month9" class="monthTd">
 						<div class="row titleRow">
 							<div class="col-md-offset-1 col-md-3" style="font-size:20px">9月</div>
 						</div>
-					</td><td class="monthTd">
+					</td>
+					<td id="month10" class="monthTd">
 						<div class="row titleRow">
 							<div class="col-md-offset-1 col-md-4" style="font-size:20px">10月</div>
 						</div>
-					</td><td class="monthTd">
+					</td>
+					<td id="month11" class="monthTd">
 						<div class="row titleRow">
 							<div class="col-md-offset-1 col-md-4" style="font-size:20px">11月</div>
 						</div>
-					</td><td class="monthTd">
+					</td>
+					<td id="month12" class="monthTd">
 						<div class="row titleRow">
 							<div class="col-md-offset-1 col-md-4" style="font-size:20px">12月</div>
 						</div>

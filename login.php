@@ -1,3 +1,16 @@
+<?php
+session_start();
+
+if(isset($_SESSION["user_isAdmin"])) {
+	if($_SESSION["user_isAdmin"]) {
+		header("Location: http://127.0.0.1/PSMS/manager.php");
+	}
+	else {
+		header("Location: http://127.0.0.1/PSMS/employee.php");
+	}
+}
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,11 +35,16 @@
 			<div class="indexTitle">人事薪資管理系統</div>
 				<div class="loginDiv">
 					<p class="loginFont">Login</p>
-					<form role="form" class="form-horizontal" method="post" active="">
+					<?php 
+						if(isset($_SESSION["login_error"])){
+							echo '<div class="alert alert-danger col-sm-offset-2 col-sm-8" role="alert">'.$_SESSION["login_error"].'</div>';
+						}
+					?>
+					<form role="form" class="form-horizontal" method="post" action="api/doLogin.php">
 						<div class="form-group has-feedback">
 							<div class="col-sm-offset-2 col-sm-8">
 								<i class="form-control-feedback glyphicon glyphicon-user" aria-hidden="true"></i>
-								<input type="text" class="form-control inputField" name="name" placeholder="帳號">		
+								<input type="text" class="form-control inputField" name="id" placeholder="帳號">		
 							</div>
 						</div>
 						<div class="form-group has-feedback">

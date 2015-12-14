@@ -14,9 +14,11 @@
 
 	<!-- 最新編譯和最佳化的 JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+
+	<script src="js/manager.js"></script>
 	<link rel="stylesheet" href="css/index.css">
 <head>
-<body>
+<body onload="load()">
 	<div class="container">
 		<div class="background">
 			<!-- header -->
@@ -27,13 +29,13 @@
 		</div>
 		<center>
 			<!-- tab -->
-		<ul class="nav nav-tabs tabRow" id="page">
-			<li id="sellTag" class="active" style="font-size:20px;width:200px;"><a>上傳薪資單</a></li>
-			<li id="buyingTag" style="font-size:20px;width:200px;"><a>管理薪資單</a></li>
+		<ul class="nav nav-tabs" id="page" style="width:90%;margin-top:40px;">
+			<li id="uploadTab" class="tabItem active" onclick="changeTab('upload')"><a>上傳薪資單</a></li>
+			<li id="manageTab" class="tabItem" onclick="changeTab('manage')"><a>管理薪資單</a></li>
 		</ul>
 
-			<!-- managerTab -->
-		<div id="managerTab" style="display:none">
+		<!-- managerTab -->
+		<div id="manageDiv" style="display:none">
 			<div class="row searchRow">
 				<div class="col-md-offset-3 col-md-1" style="padding-top:7px">員工：</div>
 				<div class="col-md-4">
@@ -123,21 +125,17 @@
 			<!-- end managerTab -->
 		
 			<!-- uploadTab -->
-		<div id="uploadTab" style="">
+		<div id="uploadDiv" style="">
 			<div class="form-horizontal searchRow">
   				<div class="row form-group">
     				<label class="col-md-offset-1 col-md-2 control-label">薪資單月份：</label>
     				<div class="col-md-2">
-      					<select class="form-control">
-  							<option>2011</option>
-  							<option>2012</option>
-  							<option>2013</option>
-  							<option>2014</option>
-  							<option>2015</option>
+      					<select id="yearSelect" name="year" class="form-control">
+  							
 						</select>
 					</div>
 					<div class="col-md-2">
-      					<select class="form-control">
+      					<select id="monthSelect" class="form-control">
   							<option>1月</option>
   							<option>2月</option>
   							<option>3月</option>
@@ -152,57 +150,31 @@
   							<option>12月</option>
 						</select>
 					</div>
-					<button type="button" class="btn btn-default">
-						<span class="fa fa-file-text-o" aria-hidden="true"></span> 新增檔案
-					</button>
+					<div class="col-md-offset-2 col-md-2">
+						<span class="file-input btn btn-default btn-file">
+							<span class="fa fa-file-text-o" aria-hidden="true"></span> 新增檔案
+					 		<input type="file" name="excelFiles" onchange="chooseFile()" multiple>
+					 	</span>
+					</div>
 				</div>
 			</div>
 
-			<div class="uplodeground">
-				<div class="uploadImg" style="display:none">
-					<i class="fa fa-files-o fa-5x"></i>
-					<p>拖曳檔案至此</p>
+			<div id="uploadgournd" class="uplodeground" ondragover="over(event)" ondrop="drop(event)">
+				<div class="uploadImg">
+					<div id="fileHere">
+						<i class="fa fa-files-o fa-5x"></i>
+						<p>拖曳檔案至此</p>
+					</div>
+					<div id="dragImg" style="display:none;">
+						<img src="loading.gif" width="200px"/>
+					</div>
 				</div>
-				<table class="table table-hover">
-					<tr>
-						<td class="col-md-1">
-							<img src="icon_excel.png" width="50px"/>
-						</td>
-						<td class="col-md-6" style="padding-top:20px">2015_12_蔡詩吟.exl</td>
-						<td class="col-md-3" style="padding-top:20px">
-							<input type="text" class="form-control" value="E224763903 蔡詩吟" disabled>
-						</td>
-						<td class="col-md-1" style="padding-top:20px">
-							<button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">
-								選擇員工
-							</button>
-						</td>
-						<td class="col-md-1" style="padding-top:20px;font-size:20px">
-							<span class="fa fa-trash-o" aria-hidden="true"></span>
-						</td>
-					</tr>
-					<tr>
-						<td class="col-md-1">
-							<img src="icon_excel.png" width="50px"/>
-						</td>
-						<td class="col-md-6" style="padding-top:20px">2015_12_蔡詩吟.exl</td>
-						<td class="col-md-3" style="padding-top:20px">
-							<input type="text" class="form-control" value="請選擇員工" disabled>
-						</td>
-						<td class="col-md-1" style="padding-top:20px">
-							<button type="button" class="btn btn-default">
-								選擇員工
-							</button>
-						</td>
-						<td class="col-md-1" style="padding-top:20px;font-size:20px">
-							<span class="fa fa-trash-o" aria-hidden="true"></span>
-						</td>
-					</tr>
+				<table id="fileTable" class="table table-hover" style="display:none">
 				</table>
 
 			</div>
 
-			<button type="button" class="btn btn-default uploadBtn">上傳</button>
+			<button type="button" class="btn btn-default uploadBtn" onclick="uploadFiles()">上傳</button>
 
 		</div>
 			<!-- end uploadTab -->
@@ -223,14 +195,14 @@
 				<div class="modal-body">
 					<div class="row">
 						<div class="col-sm-4">
-							<input type="text" class="form-control" name="id" placeholder="ID">
+							<input type="text" class="form-control" name="search_id" placeholder="ID">
 						</div>
 						<div class="col-sm-4">
-							<input type="text" class="form-control" name="name" placeholder="姓名">
+							<input type="text" class="form-control" name="search_name" placeholder="姓名">
 						</div>
 						<div class="col-sm-offset-1 col-sm-2">
-							<button type="button" class="btn btn-default">
-								<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+							<button type="button" class="btn btn-default" onclick="searchUser()">
+								<span class="glyphicon glyphicon-search" aria-hidden="true" ></span>
 								搜尋
 							</button>
 						</div>
@@ -251,20 +223,15 @@
 								<th>姓名</th>
 							</tr>
 						</thead>
-						<tr>
-							<td>
-								<input type="radio" name="select" value="1">
-							</td>
-							<td>1234567890</td>
-							<td>test1</td>
-						</tr>
+						<tbody id="searchTableBody">
+						</tbody>
 					</table>
 				</div>
 
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-					<button type="button" class="btn btn-primary">選擇</button>
+					<button id="searchBtn" type="button" class="btn btn-primary" onclick="chooseEmployee()">選擇</button>
 				</div>
 
 			</div>

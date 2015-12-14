@@ -92,19 +92,18 @@ body{
 	background-color:#D9EDF7;
 };
 
-.tabItem{
-	font-size:20px;
-	width:200px;
-}
+/*----manager----*/
+
 
 .tabRow{
 	width:90%;
 	margin-top:40px;
 }
 
-
-
-
+.tabItem{
+	font-size:20px;
+	width:200px;
+}
 
 .uplodeground{
 	border: 1px solid gray;
@@ -136,4 +135,29 @@ body{
 	margin-top:20px;
 	height: 250px;
 	overflow: auto;
+}
+
+.btn-file {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-file input[type=file] {
+  position: absolute;
+  top: 0;
+  right: 0;
+  min-width: 100%;
+  min-height: 100%;
+  font-size: 100px;
+  text-align: right;
+  filter: alpha(opacity=0);
+  opacity: 0;
+  background: red;
+  cursor: inherit;
+  display: block;
+}
+
+input[readonly] {
+  background-color: white !important;
+  cursor: text !important;
 }
